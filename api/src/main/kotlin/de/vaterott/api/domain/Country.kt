@@ -1,4 +1,4 @@
-package de.vaterott.api
+package de.vaterott.api.domain
 
 enum class Country {
     DE, USA, GR

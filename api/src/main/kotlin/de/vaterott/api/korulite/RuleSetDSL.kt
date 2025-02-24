@@ -1,4 +1,4 @@
-package de.vaterott.api
+package de.vaterott.api.korulite
 
 fun ruleSet(builder: RuleSetBuilder.() -> Unit): RuleSet {
     val ruleSetBuilder = RuleSetBuilder()

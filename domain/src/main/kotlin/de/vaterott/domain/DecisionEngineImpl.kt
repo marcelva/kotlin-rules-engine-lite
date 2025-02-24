@@ -2,12 +2,13 @@
 
 package de.vaterott.domain
 
-import de.vaterott.api.CountryDecisionRuleProvider
-import de.vaterott.api.Decision
-import de.vaterott.api.Person
+import de.vaterott.api.korulite.CountryDecisionRuleProvider
+import de.vaterott.api.domain.Decision
+import de.vaterott.api.domain.Person
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
 
+// Todo Until now, the DecisionEngineImpl only deals with CountryDecisionRuleProviders.. should be concretized
 @ApplicationScoped
 class DecisionEngineImpl @Inject constructor(
     private val ruleProviders: List<CountryDecisionRuleProvider>

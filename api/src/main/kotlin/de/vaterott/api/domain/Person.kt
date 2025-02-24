@@ -1,4 +1,4 @@
-package de.vaterott.api
+package de.vaterott.api.domain
 
 data class Person(
     val age: Int,
