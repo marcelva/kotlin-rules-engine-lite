@@ -4,11 +4,11 @@ import de.vaterott.api.domain.Country
 import de.vaterott.api.domain.Decision
 import de.vaterott.api.domain.Person
 import org.junit.jupiter.api.Test
-import javax.inject.Inject
-import io.quarkus.test.component.QuarkusComponentTest
+import io.quarkus.test.junit.QuarkusTest
+import jakarta.inject.Inject
 import org.assertj.core.api.Assertions.assertThat
 
-@QuarkusComponentTest
+@QuarkusTest
 class DecisionEngineImplTest {
 
     @Inject
