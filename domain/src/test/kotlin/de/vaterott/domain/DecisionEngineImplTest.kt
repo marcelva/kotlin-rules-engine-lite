@@ -14,10 +14,19 @@ class DecisionEngineImplTest {
     @Inject
     lateinit var decisionEngineImpl: DecisionEngineImpl
 
+    val mrSmith = Person(age = 17, country = Country.DE, lastName = "Smith")
+    val mrAdalbert = Person(age = 23, country = Country.DE, lastName = "Adalbert")
+
     @Test
-    fun test() {
-        val result = decisionEngineImpl.evaluate(Decision.CAN_DRINK_BEER, person = Person(age = 23, country = Country.DE, lastName = "Smith"))
-        assertThat(result).isTrue()
+    fun germanGuyWith() {
+        val isMrSmithAllowedToDrink = decisionEngineImpl.evaluate(Decision.CAN_DRINK_BEER, person = mrSmith)
+        assertThat(isMrSmithAllowedToDrink).isTrue()
+
+        val isMrAdalbertAllowedToDrink = decisionEngineImpl.evaluate(Decision.CAN_DRINK_BEER, person = mrAdalbert)
+        assertThat(isMrAdalbertAllowedToDrink).isFalse()
+
+        val isMrSmithAllowedToDrinkInUSA = decisionEngineImpl.evaluate(Decision.CAN_DRINK_BEER, person = mrSmith.copy(country = Country.USA))
+        assertThat(isMrSmithAllowedToDrinkInUSA).isFalse()
     }
 
 }
