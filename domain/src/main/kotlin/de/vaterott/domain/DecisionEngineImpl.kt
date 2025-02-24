@@ -5,8 +5,8 @@ package de.vaterott.domain
 import de.vaterott.api.korulite.CountryDecisionRuleProvider
 import de.vaterott.api.domain.Decision
 import de.vaterott.api.domain.Person
-import javax.enterprise.context.ApplicationScoped
-import javax.inject.Inject
+import jakarta.enterprise.context.ApplicationScoped
+import jakarta.inject.Inject
 
 // Todo Until now, the DecisionEngineImpl only deals with CountryDecisionRuleProviders.. should be concretized
 @ApplicationScoped

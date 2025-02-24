@@ -6,7 +6,7 @@ import de.vaterott.api.domain.Decision
 import de.vaterott.api.korulite.RuleSet
 import de.vaterott.api.korulite.ruleSet
 import de.vaterott.domain.rules.MinAgeRule
-import javax.enterprise.context.ApplicationScoped
+import jakarta.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
 class USADecisionRuleProvider : CountryDecisionRuleProvider {
