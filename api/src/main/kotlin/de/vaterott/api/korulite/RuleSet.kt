@@ -1,7 +1,6 @@
 package de.vaterott.api.korulite
 
-import de.vaterott.api.domain.Person
 
-class RuleSet(val rules: List<Rule>) {
-    fun evaluate(person: Person): Boolean = rules.all { it.evaluate(person) }
+class RuleSet<T>(val rules: List<Rule<T>>) {
+    fun evaluate(input: T): Boolean = rules.all { it.evaluate(input) }
 }
