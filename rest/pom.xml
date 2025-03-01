@@ -18,10 +18,6 @@
             <artifactId>quarkus-resteasy-jackson</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-arc</artifactId>
-        </dependency>
-        <dependency>
             <groupId>de.vaterott</groupId>
             <artifactId>api</artifactId>
             <version>1.0-SNAPSHOT</version>
