@@ -17,7 +17,7 @@ class GermanyRuleSetProvider: RuleSetProvider<Person> {
 
     override fun supports(filterBy: String): Boolean = filterBy == Country.DE.name
 
-    private val personActionRules: Map<String, RuleSet<Person>> = mapOf(
+    private val knowledgeBase: Map<String, RuleSet<Person>> = mapOf(
         PersonAction.CAN_DRINK_BEER.name to ruleSet {
             rule(MinAgeRule(16))
             rule(LastNamePrefixRule("S"))
@@ -30,7 +30,7 @@ class GermanyRuleSetProvider: RuleSetProvider<Person> {
     )
 
     override fun getRuleSet(action: String): RuleSet<Person> {
-        return personActionRules[action]
-            ?: throw IllegalArgumentException("Decision $action not supported for USA.")
+        return knowledgeBase[action]
+            ?: throw IllegalArgumentException("Action $action not supported for USA.")
     }
 }

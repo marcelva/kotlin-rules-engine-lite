@@ -15,7 +15,7 @@ class PersonRuleSetSupplier @Inject constructor(
 ) : RuleSetSupplier<Person> {
     override fun evaluate(action: String, fact: Person): Boolean {
         val provider = ruleProviders.firstOrNull { it.supports(fact.country.name) }
-            ?: throw IllegalArgumentException("No rule provider found for filter: ${fact.country}")
+            ?: throw IllegalArgumentException("No rule set provider found for filter: ${fact.country}")
         return provider.getRuleSet(action).evaluate(fact)
     }
 }
