@@ -9,6 +9,7 @@ import de.vaterott.api.korulite.ruleSet
 import de.vaterott.domain.rules.IsSameDayRule
 import de.vaterott.domain.rules.LastNamePrefixRule
 import de.vaterott.domain.rules.MinAgeRule
+import io.quarkus.cache.CacheResult
 import jakarta.enterprise.context.ApplicationScoped
 import java.time.LocalDate
 
@@ -24,13 +25,13 @@ class GermanyRuleSetProvider: RuleSetProvider<Person> {
         },
         PersonAction.CAN_DRIVE_RIGHT.name to ruleSet {
             rule(MinAgeRule(18))
-            // Soll nur heute auf der rechten Seite fahren dürfen
             rule(IsSameDayRule(LocalDate.now().dayOfWeek))
         }
     )
 
     override fun getRuleSet(action: String): RuleSet<Person> {
+        println("(Germany) Checking for rule set for action: $action in $knowledgeBase")
         return knowledgeBase[action]
-            ?: throw IllegalArgumentException("Action $action not supported for USA.")
+            ?: throw IllegalArgumentException("Action $action not supported for ${this::class.java.simpleName}.")
     }
 }

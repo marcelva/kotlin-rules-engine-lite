@@ -5,7 +5,6 @@ import de.vaterott.api.korulite.Rule
 
 class LastNamePrefixRule(private val prefix: String) : Rule<Person> {
     override fun evaluate(person: Person): Boolean {
-        println("Evaluating ${this::class.simpleName} for person $person... ")
         return person.lastName.startsWith(prefix, ignoreCase = true)
     }
 }

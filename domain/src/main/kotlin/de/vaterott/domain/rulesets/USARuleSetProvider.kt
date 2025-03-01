@@ -29,6 +29,7 @@ class USARuleSetProvider : RuleSetProvider<Person> {
     )
 
     override fun getRuleSet(action: String): RuleSet<Person> {
+        println("(USA) Checking for rule set for action: $action in $knowledgeBase")
         return knowledgeBase[action]
             ?: throw IllegalArgumentException("Action $action not supported for ${this::class.java.simpleName}.")
     }

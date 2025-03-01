@@ -18,6 +18,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                    <groupId>org.assertj</groupId>
+                    <artifactId>assertj-core</artifactId>
+                    <version>${version.assertj}</version>
+                    <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -67,6 +74,7 @@
         <quarkus.platform.version>3.18.4</quarkus.platform.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.5.2</surefire-plugin.version>
+        <version.assertj>3.26.3</version.assertj>
     </properties>
 
     <modules>
