@@ -3,15 +3,10 @@ package de.vaterott.domain
 import de.vaterott.api.domain.Country
 import de.vaterott.api.domain.Person
 import de.vaterott.api.domain.PersonAction
-import de.vaterott.domain.rulesets.GermanyRuleSetProvider
 import io.quarkus.test.junit.QuarkusTest
-import io.quarkus.test.junit.mockito.InjectSpy
 import jakarta.inject.Inject
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.*
-import org.mockito.ArgumentMatchers.anyString
-import org.mockito.Mockito.times
-import org.mockito.Mockito.verify
 import java.util.concurrent.TimeUnit
 
 
@@ -32,6 +27,11 @@ class PersonRuleSetSupplierLoadTest {
     @RepeatedTest(10000)
     fun repeatedTest() {
         personRuleSetSupplier.evaluate(PersonAction.CAN_DRINK_BEER.name, fact = Person(lastName = "Stefan",  age = 18, country = Country.DE))
+    }
+
+    @RepeatedTest(10)
+    fun dontRepeatTest(testInfo: TestInfo) {
+        personRuleSetSupplier.evaluate(PersonAction.CAN_DRINK_BEER.name, fact = Person(lastName = "${testInfo.displayName}", age = 18, country = Country.DE))
     }
 
     @AfterAll
