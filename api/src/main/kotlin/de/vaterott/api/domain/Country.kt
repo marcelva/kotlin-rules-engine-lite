@@ -1,5 +1,5 @@
 package de.vaterott.api.domain
 
 enum class Country {
-    DE, USA
+    DE, USA, LOGICALOP
 }

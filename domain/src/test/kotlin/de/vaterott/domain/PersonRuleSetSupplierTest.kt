@@ -38,6 +38,21 @@ class PersonRuleSetSupplierTest {
     }
 
     @Test
+    fun `combine two ruleSets with or`() {
+        val mrOr = Person(age = 12, country = Country.LOGICALOP, lastName = "MrOr")
+        val canMrOrDrinkBeerAtAge12 = personRuleSetSupplier.evaluate(PersonAction.CAN_DRINK_BEER.name, fact = mrOr)
+        assertThat(canMrOrDrinkBeerAtAge12).describedAs("Mr Or soll trinken dürfen").isTrue()
+
+        val mrOrAge18 = Person(age = 18, country = Country.LOGICALOP, lastName = "MrOr")
+        val canMrOrDrinkBeerAtAge18 = personRuleSetSupplier.evaluate(PersonAction.CAN_DRINK_BEER.name, fact = mrOrAge18)
+        assertThat(canMrOrDrinkBeerAtAge18).describedAs("Mr Or mit 18 sollte nicht trinken dürfen").isFalse()
+
+        val orAge18 = Person(age = 18, country = Country.LOGICALOP, lastName = "Or")
+        val canOrDrinkBeerAtAge18 = personRuleSetSupplier.evaluate(PersonAction.CAN_DRINK_BEER.name, fact = orAge18)
+        assertThat(canOrDrinkBeerAtAge18).describedAs("Or mit 18 sollte  trinken dürfen").isTrue()
+    }
+
+    @Test
     fun wrongAction() {
         assertThrows<IllegalArgumentException>{
             personRuleSetSupplier.evaluate("blub", fact = mrSmith)
