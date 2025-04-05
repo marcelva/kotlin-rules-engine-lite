@@ -7,4 +7,10 @@ class LastNamePrefixRule(private val prefix: String) : Rule<Person> {
     override fun evaluate(person: Person): Boolean {
         return person.lastName.startsWith(prefix, ignoreCase = true)
     }
+
+    override fun toString(): String {
+        return "LastNamePrefixRule(prefix='$prefix')"
+    }
+
+
 }
