@@ -1,0 +1,18 @@
+{
+  "ruleSets": [
+    {
+      "name": "SommerKampagneBlauAugen",
+      "allOf": [
+        { "attribute": "eyeColor", "equals": "blau" },
+        { "attribute": "minAge", "equals": "21" }
+      ]
+    },
+    {
+      "name": "SommerKampagneDunklesHaar",
+      "allOf": [
+        { "attribute": "hairType", "equals": "schwarz" },
+        { "attribute": "minAge", "equals": "21" }
+      ]
+    }
+  ]
+}

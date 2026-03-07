@@ -1,0 +1,12 @@
+{
+  "ruleSets": [
+    {
+      "name": "VIPLoungeFreigabe",
+      "allOf": [
+        { "attribute": "minAge", "equals": "25" },
+        { "attribute": "eyeColor", "equals": "hazel" },
+        { "attribute": "lastNamePrefix", "equals": "von" }
+      ]
+    }
+  ]
+}

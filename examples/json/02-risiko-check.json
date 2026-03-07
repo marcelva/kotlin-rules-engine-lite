@@ -1,0 +1,11 @@
+{
+  "ruleSets": [
+    {
+      "name": "ManuellePruefungErforderlich",
+      "allOf": [
+        { "attribute": "lastNamePrefix", "equals": "X" },
+        { "attribute": "minAge", "equals": "18" }
+      ]
+    }
+  ]
+}

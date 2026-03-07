@@ -1,0 +1,11 @@
+{
+  "ruleSets": [
+    {
+      "name": "GeburtsjahrgangCheck40",
+      "allOf": [
+        { "attribute": "sameAge", "equals": "40" },
+        { "attribute": "lastNamePrefix", "equals": "Sch" }
+      ]
+    }
+  ]
+}

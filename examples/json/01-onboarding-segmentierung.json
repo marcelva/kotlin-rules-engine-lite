@@ -1,0 +1,12 @@
+{
+  "ruleSets": [
+    {
+      "name": "PremiumLead",
+      "allOf": [
+        { "attribute": "minAge", "equals": "30" },
+        { "attribute": "eyeColor", "equals": "gruen" },
+        { "attribute": "hairType", "equals": "braun" }
+      ]
+    }
+  ]
+}

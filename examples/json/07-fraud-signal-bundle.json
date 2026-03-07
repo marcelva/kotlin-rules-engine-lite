@@ -1,0 +1,18 @@
+{
+  "ruleSets": [
+    {
+      "name": "AnomalieSignalA",
+      "allOf": [
+        { "attribute": "sameAge", "equals": "99" },
+        { "attribute": "hairType", "equals": "pink" }
+      ]
+    },
+    {
+      "name": "AnomalieSignalB",
+      "allOf": [
+        { "attribute": "lastNamePrefix", "equals": "Test" },
+        { "attribute": "eyeColor", "equals": "rot" }
+      ]
+    }
+  ]
+}
