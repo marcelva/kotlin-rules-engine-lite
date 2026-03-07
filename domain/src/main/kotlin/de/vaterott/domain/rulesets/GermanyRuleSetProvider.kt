@@ -9,7 +9,6 @@ import de.vaterott.api.korulite.ruleSet
 import de.vaterott.domain.rules.IsSameDayRule
 import de.vaterott.domain.rules.LastNamePrefixRule
 import de.vaterott.domain.rules.MinAgeRule
-import io.quarkus.cache.CacheResult
 import jakarta.enterprise.context.ApplicationScoped
 import java.time.LocalDate
 
@@ -28,6 +27,9 @@ class GermanyRuleSetProvider: RuleSetProvider<Person> {
             rule(IsSameDayRule(LocalDate.now().dayOfWeek))
         }
     )
+
+
+    override fun listRuleSets(): Map<String, RuleSet<Person>> = knowledgeBase
 
     override fun getRuleSet(action: String): RuleSet<Person> {
         println("(Germany) Checking for rule set for action: $action in $knowledgeBase")

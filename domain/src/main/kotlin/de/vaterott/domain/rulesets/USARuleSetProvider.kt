@@ -28,6 +28,9 @@ class USARuleSetProvider : RuleSetProvider<Person> {
         }
     )
 
+
+    override fun listRuleSets(): Map<String, RuleSet<Person>> = knowledgeBase
+
     override fun getRuleSet(action: String): RuleSet<Person> {
         println("(USA) Checking for rule set for action: $action in $knowledgeBase")
         return knowledgeBase[action]

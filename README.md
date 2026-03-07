@@ -177,6 +177,27 @@ This pattern keeps decision logic modular and easy to extend.
 
 ---
 
+
+## Business RuleSet Catalog (Markdown)
+
+For stakeholder-friendly communication (non-technical audiences), you can generate a Markdown catalog of all currently defined rule sets.
+
+Run from repository root:
+
+```bash
+mvn -pl domain exec:java@generate-ruleset-catalog
+```
+
+Output file:
+
+- `domain/target/ruleset-catalog.md`
+
+You can customize the output location:
+
+```bash
+mvn -pl domain exec:java@generate-ruleset-catalog -Druleset.catalog.output=target/my-rules.md
+```
+
 ## Build and test
 
 From the repository root:

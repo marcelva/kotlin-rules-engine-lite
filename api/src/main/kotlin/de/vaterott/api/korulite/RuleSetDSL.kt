@@ -4,14 +4,21 @@ fun <T> combineWithOr(builder: OrRuleSetBuilder<T>.() -> Unit): RuleSet<T> {
     val ruleSetBuilder = OrRuleSetBuilder<T>()
     ruleSetBuilder.builder()
     return RuleSet(
-        listOf(object : Rule<T> {
-            override fun evaluate(fact: T): Boolean {
-                return ruleSetBuilder.ruleSets.any { ruleSet ->
-                    ruleSet.rules.all { rule -> rule.evaluate(fact) }
-                }
-            }
-        })
+        listOf(AnyOfRule(ruleSetBuilder.ruleSets.toList()))
     )
+}
+
+class AnyOfRule<T>(val alternatives: List<RuleSet<T>>) : Rule<T> {
+    override fun evaluate(fact: T): Boolean {
+        return alternatives.any { ruleSet ->
+            ruleSet.rules.all { rule -> rule.evaluate(fact) }
+        }
+    }
+
+    override fun toString(): String {
+        val content = alternatives.joinToString(prefix = "[", postfix = "]") { it.rules.joinToString(prefix = "[", postfix = "]") }
+        return "AnyOfRule(alternatives=$content)"
+    }
 }
 
 class OrRuleSetBuilder<T> {

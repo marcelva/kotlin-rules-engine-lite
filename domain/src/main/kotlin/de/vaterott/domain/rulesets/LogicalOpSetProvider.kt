@@ -33,6 +33,9 @@ class LogicalOpSetProvider : RuleSetProvider<Person> {
 
     override fun supports(filterBy: String) = filterBy == Country.LOGICALOP.name
 
+
+    override fun listRuleSets(): Map<String, RuleSet<Person>> = knowledgeBase
+
     override fun getRuleSet(action: String): RuleSet<Person> {
         println("(LogicalOp) Checking for rule set for action: $action in $knowledgeBase")
         return knowledgeBase[action]
