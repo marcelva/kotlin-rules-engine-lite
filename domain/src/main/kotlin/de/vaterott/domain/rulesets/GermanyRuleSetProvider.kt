@@ -1,10 +1,12 @@
 package de.vaterott.domain.rulesets
 
 import de.vaterott.api.domain.Country
-import de.vaterott.api.domain.PersonAction
 import de.vaterott.api.domain.Person
-import de.vaterott.api.korulite.RuleSetProvider
+import de.vaterott.api.domain.PersonAction
+import de.vaterott.api.korulite.ProviderDoc
 import de.vaterott.api.korulite.RuleSet
+import de.vaterott.api.korulite.RuleSetDoc
+import de.vaterott.api.korulite.RuleSetProvider
 import de.vaterott.api.korulite.ruleSet
 import de.vaterott.domain.rules.IsSameDayRule
 import de.vaterott.domain.rules.LastNamePrefixRule
@@ -13,26 +15,39 @@ import jakarta.enterprise.context.ApplicationScoped
 import java.time.LocalDate
 
 @ApplicationScoped
-class GermanyRuleSetProvider: RuleSetProvider<Person> {
+@ProviderDoc("🇩🇪 Deutschland")
+class GermanyRuleSetProvider : RuleSetProvider<Person> {
 
     override fun supports(filterBy: String): Boolean = filterBy == Country.DE.name
 
-    private val knowledgeBase: Map<String, RuleSet<Person>> = mapOf(
-        PersonAction.CAN_DRINK_BEER.name to ruleSet {
-            rule(MinAgeRule(16))
-            rule(LastNamePrefixRule("S"))
-        },
-        PersonAction.CAN_DRIVE_RIGHT.name to ruleSet {
-            rule(MinAgeRule(18))
-            rule(IsSameDayRule(LocalDate.now().dayOfWeek))
-        }
+    @RuleSetDoc(
+        action = "CAN_DRINK_BEER",
+        title = "Bierfreigabe",
+        summary = "Für Kampagnen und Angebote rund um Bierprodukte"
     )
+    private val canDrinkBeer = ruleSet {
+        rule(MinAgeRule(16))
+        rule(LastNamePrefixRule("S"))
+    }
 
+    @RuleSetDoc(
+        action = "CAN_DRIVE_RIGHT",
+        title = "Fahrtfreigabe",
+        summary = "Regelwerk für fahrbezogene Berechtigungen"
+    )
+    private val canDriveRight = ruleSet {
+        rule(MinAgeRule(18))
+        rule(IsSameDayRule(LocalDate.now().dayOfWeek))
+    }
+
+    private val knowledgeBase: Map<String, RuleSet<Person>> = mapOf(
+        PersonAction.CAN_DRINK_BEER.name to canDrinkBeer,
+        PersonAction.CAN_DRIVE_RIGHT.name to canDriveRight
+    )
 
     override fun listRuleSets(): Map<String, RuleSet<Person>> = knowledgeBase
 
     override fun getRuleSet(action: String): RuleSet<Person> {
-        println("(Germany) Checking for rule set for action: $action in $knowledgeBase")
         return knowledgeBase[action]
             ?: throw IllegalArgumentException("Action $action not supported for ${this::class.java.simpleName}.")
     }

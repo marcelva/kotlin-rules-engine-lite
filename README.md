@@ -182,6 +182,11 @@ This pattern keeps decision logic modular and easy to extend.
 
 For stakeholder-friendly communication (non-technical audiences), you can generate a Markdown catalog of all currently defined rule sets.
 
+The catalog is **annotation-driven** so new business wording can be maintained directly where rules and rule sets are defined:
+- `@RuleDoc(template = "...")` on Rule classes
+- `@RuleSetDoc(...)` on RuleSet fields in providers
+- `@ProviderDoc("...")` on provider classes
+
 Run from repository root:
 
 ```bash

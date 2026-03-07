@@ -9,7 +9,7 @@ import kotlin.test.assertContains
 class RuleSetCatalogGeneratorTest {
 
     @Test
-    fun `should generate business friendly markdown`() {
+    fun `should generate annotation based business friendly markdown`() {
         val markdown = RuleSetCatalogGenerator.buildMarkdownForTesting(
             listOf(
                 GermanyRuleSetProvider(),
@@ -20,8 +20,8 @@ class RuleSetCatalogGeneratorTest {
 
         assertContains(markdown, "# Business RuleSet Katalog")
         assertContains(markdown, "🇩🇪 Deutschland")
-        assertContains(markdown, "CAN_DRINK_BEER")
-        assertContains(markdown, "Mindestalter")
+        assertContains(markdown, "Bierfreigabe")
+        assertContains(markdown, "Mindestalter 16 Jahre")
         assertContains(markdown, "oder")
     }
 }
