@@ -24,7 +24,7 @@ class USARuleSetProvider : RuleSetProvider<Person> {
         },
         PersonAction.CAN_DRIVE_RIGHT.name to ruleSet {
             rule(MinAgeRule(16))
-            rule(IsSameDayRule(LocalDate.now().dayOfWeek.minus(1)))
+            rule(IsSameDayRule(LocalDate.now().dayOfWeek))
         }
     )
 

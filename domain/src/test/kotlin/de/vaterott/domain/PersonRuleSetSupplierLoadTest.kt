@@ -11,22 +11,30 @@ import java.util.concurrent.TimeUnit
 
 
 @QuarkusTest
+@Tag("performance")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PersonRuleSetSupplierLoadTest {
 
     @Inject
     lateinit var personRuleSetSupplier: PersonRuleSetSupplier
 
-    var startTime: Long = 0L
+    private var startTime: Long = 0L
+    private val repetitions: Int =
+        System.getProperty("loadTest.repetitions")?.toIntOrNull()?.coerceAtLeast(1) ?: 1000
 
     @BeforeAll
     fun beforeAll() {
         startTime = System.nanoTime()
     }
 
-    @RepeatedTest(10000)
+    @Test
     fun repeatedTest() {
-        personRuleSetSupplier.evaluate(PersonAction.CAN_DRINK_BEER.name, fact = Person(lastName = "Stefan",  age = 18, country = Country.DE))
+        repeat(repetitions) {
+            personRuleSetSupplier.evaluate(
+                PersonAction.CAN_DRINK_BEER.name,
+                fact = Person(lastName = "Stefan", age = 18, country = Country.DE)
+            )
+        }
     }
 
     @RepeatedTest(10)
@@ -40,7 +48,7 @@ class PersonRuleSetSupplierLoadTest {
         assertThat(TimeUnit.NANOSECONDS.toMillis(duration))
             .describedAs { "You are wasting my time ;)" }
             .isLessThanOrEqualTo(10000)
-        println("Complete time to call 10000 evualtions: " + TimeUnit.NANOSECONDS.toMillis(duration) + " ms")
+        println("Complete time to call $repetitions evaluations: " + TimeUnit.NANOSECONDS.toMillis(duration) + " ms")
     }
 
 }
