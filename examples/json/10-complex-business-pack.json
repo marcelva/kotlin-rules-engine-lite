@@ -1,0 +1,26 @@
+{
+  "ruleSets": [
+    {
+      "name": "B2CPromoEligible",
+      "allOf": [
+        { "attribute": "minAge", "equals": "18" },
+        { "attribute": "lastNamePrefix", "equals": "M" }
+      ]
+    },
+    {
+      "name": "B2BLeadCandidate",
+      "allOf": [
+        { "attribute": "minAge", "equals": "35" },
+        { "attribute": "eyeColor", "equals": "grau" },
+        { "attribute": "hairType", "equals": "schwarz" }
+      ]
+    },
+    {
+      "name": "TimeboxedAudit",
+      "allOf": [
+        { "attribute": "isSameDay", "equals": "FRIDAY" },
+        { "attribute": "sameAge", "equals": "42" }
+      ]
+    }
+  ]
+}

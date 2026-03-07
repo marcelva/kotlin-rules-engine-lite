@@ -1,0 +1,19 @@
+{
+  "ruleSets": [
+    {
+      "name": "RewardTierBronze",
+      "allOf": [
+        { "attribute": "minAge", "equals": "16" },
+        { "attribute": "hairType", "equals": "blond" }
+      ]
+    },
+    {
+      "name": "RewardTierGold",
+      "allOf": [
+        { "attribute": "minAge", "equals": "30" },
+        { "attribute": "eyeColor", "equals": "gruen" },
+        { "attribute": "lastNamePrefix", "equals": "Dr" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "ruleSets": [
+    {
+      "name": "WochenstartSpezial",
+      "allOf": [
+        { "attribute": "isSameDay", "equals": "MONDAY" },
+        { "attribute": "minAge", "equals": "16" }
+      ]
+    }
+  ]
+}

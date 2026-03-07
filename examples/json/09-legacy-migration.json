@@ -1,0 +1,18 @@
+{
+  "ruleSets": [
+    {
+      "name": "LegacySegmentA",
+      "allOf": [
+        { "attribute": "sameAge", "equals": "18" },
+        { "attribute": "eyeColor", "equals": "braun" }
+      ]
+    },
+    {
+      "name": "LegacySegmentB",
+      "allOf": [
+        { "attribute": "sameAge", "equals": "65" },
+        { "attribute": "hairType", "equals": "grau" }
+      ]
+    }
+  ]
+}
